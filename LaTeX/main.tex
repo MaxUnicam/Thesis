@@ -1,0 +1,56 @@
+\documentclass{unicam_thesis}
+
+\usepackage{graphicx}
+\usepackage[figuresleft]{rotating}
+\usepackage{hyperref}
+\usepackage{listings, xcolor}
+\usepackage[numbers]{natbib}
+
+\title{Applying Process Mining in Blockchain Transactions}
+\university{Universit\`a degli Studi di Camerino}
+\school{Scienze e Tecnologie}
+\course{Laurea in Informatica (Classe L-31)}
+\author{Massimiliano Sampaolo}
+\advisor{Dr. Barbara Re}
+\secondadvisor{Dr. Andrea Morichetta}
+\academicyear{2018/2019}
+\matricola{095573}
+
+
+\begin{document}
+\maketitle
+\pagestyle{empty}
+\pagenumbering{roman}
+
+\renewcommand{\contentsname}{Index}
+\renewcommand{\listfigurename}{List of figures}
+\renewcommand{\figurename}{Figure}
+
+\input{abstract}
+\tableofcontents
+\listoffigures
+\lstlistoflistings
+
+\newpage
+
+\pagestyle{fancy}
+\cleardoublepage\pagenumbering{arabic}
+\setlength{\headheight}{15pt}
+\renewcommand{\sectionmark}[1]{\markright{#1}{}} \fancyhf{}
+\fancyhead[L]{\textit{\nouppercase{\rightmark}}}
+\fancyhead[RO]{\textit{\nouppercase{\rightmark}}}
+\fancyfoot[C]{\thepage}
+
+\input{settings.tex}
+
+\input{introduction.tex}
+\input{blockchain.tex}
+\input{process_mining.tex}
+\input{case_studies.tex}
+\input{design_implementation.tex}
+\input{conclusions.tex}
+
+\bibliographystyle{plainnat}
+\bibliography{bibliography}
+
+\end{document}
