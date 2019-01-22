@@ -1,0 +1,47 @@
+% Copyright 2014 by Lucia Acciai, Michele Loreti, Stephen Gilmore
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+
+\ProvidesPackageRCS $Header: beamercolorthemequanticol.sty,v 0.1 2012/09/16 $
+
+\definecolor{unicamred}{cmyk}{0,1,1,0}
+\definecolor{unicamblue}{cmyk}{1,.85,.45,.15}
+\definecolor{unicamlightblue}{RGB}{76,96,109}
+
+\definecolor{unicamgray}{RGB}{128,128,128}
+\definecolor{unicamgrey}{RGB}{128,128,128}
+
+\mode<presentation>
+
+\setbeamercolor{example text}{fg=unicamgray!60!black}
+\setbeamercolor{normal text}{fg=black,bg=white}
+\setbeamercolor{alerted text}{fg=unicamred}
+\setbeamercolor{structure}{fg=unicamblue}
+\setbeamercolor{frametitle}{fg=unicamblue}
+\setbeamercolor{framesubtitle}{fg=unicamblue}
+
+
+% Light version
+\setbeamercolor{block title}{use=structure,fg=white,bg=unicamblue}
+% Dark version 
+%\setbeamercolor{block title}{use=structure,fg=structure.fg,bg=structure.fg!40!bg}
+
+% Light version
+%\setbeamercolor{block title alerted}{use=alerted text,fg=alerted text.fg,bg=alerted text.fg!30!bg}
+% Dark version 
+\setbeamercolor{block title alerted}{use=alerted text,fg=unicamblue,bg=unicamred!50!white}
+
+% Light version
+\setbeamercolor{block title example}{use=example text,fg=structure.fg,bg=example text.fg!20!bg}
+% Dark version 
+%\setbeamercolor{block title example}{use=example text,fg=example text.fg,bg=example text.fg!60!bg}
+
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=unicamblue!10!white}
+\setbeamercolor{block body alerted}{parent=normal text,use=block title alerted,bg=block title alerted.bg!50!bg}
+\setbeamercolor{block body example}{parent=normal text,use=block title example,bg=block title example.bg!50!bg}
+
+\mode<all>

@@ -1,0 +1,121 @@
+% Copyright 2018 by Michele Loreti
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+
+\ProvidesPackageRCS $Header: beamerouterthemeunicam.sty,v 0.1 2018/02/10 $
+
+\newlength{\titlepageruler}
+\setlength{\titlepageruler}{2.5cm}
+
+\newlength{\framepagepageruler}
+\setlength{\framepagepageruler}{0.5cm}
+
+\newlength{\logorightgap}
+\setlength{\logorightgap}{.5cm}
+
+
+\newlength{\headerheight}
+\setlength{\headerheight}{1.5cm}
+\newlength{\leftgap}
+\setlength{\leftgap}{0pt}
+\newlength{\boxgap}
+\setlength{\boxgap}{4pt}
+\newlength{\innerbarwidth}
+\setlength{\innerbarwidth}{20pt}
+\newlength{\innerbarspace}
+\setlength{\innerbarspace}{4pt}
+\newlength{\sidewidth}
+\setlength{\sidewidth}{\leftgap}
+\addtolength{\sidewidth}{\innerbarspace}
+\addtolength{\sidewidth}{\innerbarwidth}
+\newlength{\quanticolleftmargin}
+\setlength{\quanticolleftmargin}{\sidewidth}
+\addtolength{\quanticolleftmargin}{2\boxgap}
+
+%Hide navigation bar
+\defbeamertemplate*{navigation symbols}{quanticol}{}
+
+\pgfdeclareimage[interpolate=true,height=1cm]{unicamlogo}{logo_small}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% Frame Headline %%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\defbeamertemplate*{headline}{unicam theme}
+{
+\begin{tikzpicture}
+\pgfcoordinate{A}{\pgfpoint{\paperwidth}{\framepagepageruler}}
+\pgfcoordinate{topLeftLogo}{\pgfpoint{\paperwidth-1.325cm}{0.5\framepagepageruler+0.02cm}}
+\pgfcoordinate{bottomRightLogo}{\pgfpoint{\paperwidth-\logorightgap+0.02cm}{0.5\framepagepageruler-1cm}}
+\draw [fill=unicamred,draw=unicamred] (0.0,0.0) rectangle (A);
+\draw [fill=white,draw=white] (topLeftLogo) rectangle (bottomRightLogo);
+\pgftext[at=\pgfpoint{\paperwidth-\logorightgap}{0.5\framepagepageruler},right,top]{\pgfuseimage{unicamlogo}}
+\end{tikzpicture}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% Frame title %%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\defbeamertemplate*{frametitle}{unicam theme}
+  {%
+    \nointerlineskip%
+    \vskip-0.6cm%
+  	\@tempdima=\textwidth%
+  	\advance\@tempdima by-1.80cm%
+    \parbox[top]{\the\@tempdima}{%
+      {
+      	\usebeamerfont{frametitle}\insertframetitle\par}
+      }%
+    %\vskip-.1cm%
+
+    \parbox[top]{\the\@tempdima}{%
+      {
+		\usebeamerfont{framesubtitle}\insertframesubtitle\par
+      }%
+    }
+%    \vskip-0.6cm%
+  }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\defbeamertemplate*{sidebar left}{unicam theme}{}
+
+\defbeamertemplate*{sidebar right}{unicam theme}{}
+
+\defbeamertemplate*{footline}{quanticol theme}
+{
+  \leavevmode%
+ \hbox{%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,center]{author in head/foot}%
+	%\hspace\sidewidth \insertlogo%
+    \vspace{\boxgap}
+    \usebeamerfont{author in head/foot}\null
+       \color{unicamblue}\insertshortauthor%~~(\insertshortinstitute)
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,center]{title in head/foot}%
+    \vspace{\boxgap}
+    \usebeamerfont{title in head/foot}	\color{unicamblue}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.223333\paperwidth,right]{date in h
+ead/foot}%
+    \usebeamerfont{date in head/foot}
+    	\color{unicamblue}
+    \vspace{\boxgap}
+    \insertshortdate{}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.1\paperwidth,right]{date in h
+ead/foot}%
+    \usebeamerfont{date in head/foot}
+    	\color{unicamblue}
+    \vspace{\boxgap}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+
+
+\setbeamersize{text margin left=1em,text margin right=1em}
