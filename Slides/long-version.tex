@@ -1,5 +1,5 @@
 %\documentclass[c,handout]{beamer}
-\documentclass[c]{beamer}
+\documentclass[c,xcolor=table]{beamer}
 
 
 \usepackage{etex}
@@ -55,27 +55,15 @@
 	
 	
 	\frame{
-	    \frametitle{Business Process Management}
+	    \frametitle{Process Mining}
 		
 		A \textbf{Business Process} is a collection of related and structured activities undertaken by one or more 
 		organisations in order to pursue some particular goal.
 
 		\vspace{16px}
 		
-		\textbf{Business Process Management} (BPM) is the set of activities needed to define, optimize and monitor 
-		business processes in order to make effective company’s business.
-
-		\vspace{16px}
-
-		\textbf{BPMN} (Business Process Model and Notation) is a standard language to grapichally represent 
-		process models.
-	}
-	
-
-	\frame{
-		\frametitle{Process Mining}
-		The idea is to discover, monitor and improve real processes by extracting knowledge from event logs readily 
-		available in today's information systems.
+		Process mining has the goal to discover, monitor and improve real processes by extracting knowledge from event logs 
+		readily available in today's information systems.
 
 		\vspace{16px}
 
@@ -85,71 +73,32 @@
 			\item Conformance checking
 			\item Enhancement
 		\end{itemize}
-
-		\vspace{16px}
-
-		Used discovery algorithms: \textbf{Heuristic Miner}, \textbf{Inductive Miner}, \textbf{Split Miner}
 	}
+	
 
 	\frame{
-		\frametitle{Heuristic Miner}
-		It mines the control-flow perspective of a process model. It extends alpha algorithm by considering the frequency of traces 
-		in the log. 
-
-		\vspace{16px}
-
-		It consists in a set of steps: 
+		\frametitle{Discovery algorithms}
+		Used discovery algorithms: 
 		\begin{itemize}
-			\item the identification of all the activities
-			\item find the connection between activities and their frequencies
-			\item dependency relation matrix is calculated
-			\item final net is built from the matrix previously created
+			\item \textbf{Heuristic Miner}, it builds a Directly Follow Graph, filters noise based on ordering 
+				relationship frequence
+
+				\vspace{8px}
+
+			\item \textbf{Inductive Miner}, it uses a divide-et-conquer approach, first it creates a DFG then it filter 
+				infrequent dependencies and after that it applies cuts to the graph recursively
+
+				\vspace{8px}
+
+			\item \textbf{Split Miner}, produces a BPMN model in five steps:
+
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=110mm]{images/split_miner_steps.png}
+			\end{figure}
+
 		\end{itemize}
 	}
-
-	\frame{
-		\frametitle{Inductive Miner}
-
-		It uses a divide-et-conquer approach: 
-
-		\begin{itemize}
-			\item builds a directly follow graph (DFG)
-			\item filters infrequent directly-follows dependencies
-			\item find the dominant operator and apply relative cut
-			\item a process tree is generated from each portion
-		\end{itemize}
-
-		\vspace{16px}
-
-		The third step is applied recursively until no more cuts are found.
-	}
-
-	\frame{
-		\frametitle{Split Miner}
-		
-		Split Miner produces a BPMN model in five steps:
-
-		\begin{figure}[H]
-			\centering
-			\includegraphics[width=120mm]{images/split_miner_steps.png}
-		\end{figure}
-	}
-
-	\frame{
-		\frametitle{Process mining tools}
-		
-		Different software tools are available to support process mining techniques.
-		
-		\vspace{16px}
-
-		The more used are: 
-		\begin{itemize}
-			\item ProM
-			\item Apromore
-			\item Disco
-		\end{itemize}
-	}
-
 
 	\frame{
 		\frametitle{Case Studies}
@@ -158,12 +107,10 @@
 		
 		\vspace{16px}
 
-		\begin{itemize}
-			\item Retrieving of transaction list from Ethereum
-			\item Generation of log file starting from the transaction list
-			\item Analysis of the log with discovery algoritms previously introduced
-			\item Quality check of the results obtained
-		\end{itemize}
+		\begin{figure}[t]
+			\centering
+			\includegraphics[width=120mm]{images/methodology.png}
+		\end{figure}
 	}
 
 
@@ -172,29 +119,78 @@
 
 		\begin{figure}[t]
 			\centering
-			\includegraphics[width=60mm]{images/rotohive.png}
+			\includegraphics[width=40mm]{images/rotohive.png}
 		\end{figure}
 
 		RotoHive is a new type of fantasy sports site that runs weekly tournaments.
+		
+		Model discovered with Heuristic Miner (the best algorithm in this case):
+
+		\begin{figure}
+			\centering
+			\includegraphics[width=90mm]{images/roto_heuristic.png}
+		\end{figure}
+	}
+
+	\frame{
+		\frametitle{Fomo 3D}
+
+		This is a lottery game in which the last person to buy a key at the end of a round wins the jackpot!
+		
+		In this case, Split and Inductive Miner discovered the same model, better than Heuristic Miner one.
+
+		\begin{figure}
+			\centering
+			\includegraphics[width=110mm]{images/fomo_inductive.png}
+		\end{figure}
+	}
+
+	\frame{
+		\frametitle{IDEX}
+
+		IDEX is a cryptocurrency exchange.
+		Exchanges are applications that allows the user to deposit, withdraw or exchange cryptocurrencies.
+
+		\begin{figure}
+			\centering
+			\includegraphics[width=110mm]{images/idex_inductive.png}
+		\end{figure}
+	}
+
+	\frame{
+		\frametitle{Quality measures}
+
+		Quality measures obtained in the case studies with the three used algoritms:
+
+		\begin{tiny}
+
+			\begin{table}[htbp]
+				\begin{tabular}{llllllllll}
+												& \multicolumn{3}{l}{\textbf{Fitness}}                                                    & \multicolumn{3}{l}{\textbf{Precision}}                                                  & \multicolumn{3}{l}{\textbf{Generalization}}                                             \\
+				{\color[HTML]{656565} Algorithm} & {\color[HTML]{656565} Roto} & {\color[HTML]{656565} Fomo} & {\color[HTML]{656565} IDEX} & {\color[HTML]{656565} Roto} & {\color[HTML]{656565} Fomo} & {\color[HTML]{656565} IDEX} & {\color[HTML]{656565} Roto} & {\color[HTML]{656565} Fomo} & {\color[HTML]{656565} IDEX} \\
+				Split                      & 1                           & 0.97357                     & 0.99573                     & 0.20453                     & 0.47947                     & 0.22884                     & 0.99892                     & 0.96836                     & 0.99914                     \\
+				Inductive                  & 0.99995                     & 0.97357                     & 0.99971                     & 0.60294                     & 0.47947                     & 0.48298                     & 0.99496                     & 0.96836                     & 0.99968                     \\
+				Heuristic                  & 0.99940                     & 0.98710                     & 1                           & 0.49889                     & 0.48634                     & 0.32516                     & 0.99889                     & 0.87593                     & 0.99882                    
+				\end{tabular}
+			\end{table}
+
+		\end{tiny}
+	}
+
+
+	\frame{
+		\frametitle{Design and implementation}
+		
+		The system designed recreates the methodology used in the case studies analysis.
 
 		\vspace{16px}
-		
-		Results obtained:
-		
-		\begin{center}
-			\label{tables:roto}
-			\begin{tabular}{ | l | c | c | c |}
-				\hline
-				\textbf{Algorithm} & \textbf{Fitness} & \textbf{Precision} & \textbf{Generalization} \\ 
-				\hline
-				Split Miner & 1 & 0.20453 & 0.99892 \\ 
-				\hline
-				Inductive Miner & 0.99995 & 0.60294 & 0.99496 \\
-				\hline
-				Heuristic Miner & 0.99940 & 0.49889 & 0.99889 \\
-				\hline
-			\end{tabular}
-		\end{center}
+
+		The architecture of the Mining Framework: 
+
+		\begin{figure}[t]
+			\centering
+			\includegraphics[width=80mm]{images/component_diagram.png}
+		\end{figure}
 	}
 
 
@@ -215,19 +211,10 @@
 	}
 
 
-	\frame{
-		\frametitle{Design and implementation}
-		
-		The system designed recreates the methodology used in the case studies analysis.
-
-		\vspace{16px}
-
-		The architecture of the Mining Framework: 
-
-		\begin{figure}[t]
-			\centering
-			\includegraphics[width=80mm]{images/component_diagram.png}
-		\end{figure}
+	\frame {
+		\begin{center}
+			Thanks for your attention!
+		\end{center}
 	}
     
 \end{document}
