@@ -3,6 +3,7 @@
 
 
 \usepackage{etex}
+\usepackage{advdate}
 \usetheme{Unicam}
 
 
@@ -10,9 +11,10 @@
 
 \author{Massimiliano Sampaolo}
 
-
 %\usetheme{lucid}
 \begin{document}
+	
+\SetDate[28/01/2019]
 
 	\frame {
 		\titlepage
@@ -24,7 +26,7 @@
 	\frame {
 		\frametitle{Objective and Motivations}
 		The thesis want to understand and define bindings between \textbf{blockchain} transactions 
-		using \textbf{process mining}.\\ \vspace{20px}
+		using \textbf{process mining}\\ \vspace{20px}
 		Why?
 		\begin{itemize}
 			\item Blockchain and process mining are hot topics in industry and academia
@@ -37,8 +39,7 @@
 	\frame{
 		\frametitle{Blockchain}
 
-		Chain of blocks:
-		\begin{figure}[H]
+		\begin{figure}[T]
 			\centering
 			\includegraphics[width=70mm]{images/chain_of_blocks.png}
 		\end{figure}
@@ -50,20 +51,23 @@
 			\item Security
 			\item Immutability
 		\end{itemize}
-		\textbf{Ethereum}: EVM, Smart Contracts and DAPP
+
+		\vspace{8px}
+
+		\textbf{Ethereum}: Vritual machine, Smart contracts and decentralized applications
     }
 	
 	
 	\frame{
-	    \frametitle{Process Mining}
+	    \frametitle{Business Process and Process Mining}
 		
-		A \textbf{Business Process} is a collection of related and structured activities undertaken by one or more 
-		organisations in order to pursue some particular goal.
+		\textbf{Business Process} is a collection of related and structured activities undertaken by one or more 
+		organisations in order to pursue some particular goal
 
 		\vspace{16px}
 		
 		Process mining has the goal to discover, monitor and improve real processes by extracting knowledge from event logs 
-		readily available in today's information systems.
+		readily available in today's information systems
 
 		\vspace{16px}
 
@@ -78,7 +82,7 @@
 
 	\frame{
 		\frametitle{Discovery algorithms}
-		Used discovery algorithms: 
+		
 		\begin{itemize}
 			\item \textbf{Heuristic Miner}, it builds a Directly Follow Graph, filters noise based on ordering 
 				relationship frequence
@@ -90,22 +94,14 @@
 
 				\vspace{8px}
 
-			\item \textbf{Split Miner}, produces a BPMN model in five steps:
-
-			\begin{figure}[H]
-				\centering
-				\includegraphics[width=110mm]{images/split_miner_steps.png}
-			\end{figure}
+			\item \textbf{Split Miner}, produces a BPMN model in five steps: DFG and loops discovery, concurrency discovery, 
+				filtering, splits discovery and joins discovery
 
 		\end{itemize}
 	}
 
 	\frame{
-		\frametitle{Case Studies}
-		
-		The methodology used for the case studies consists of several steps:
-		
-		\vspace{16px}
+		\frametitle{Methodology}
 
 		\begin{figure}[t]
 			\centering
@@ -122,9 +118,9 @@
 			\includegraphics[width=40mm]{images/rotohive.png}
 		\end{figure}
 
-		RotoHive is a new type of fantasy sports site that runs weekly tournaments.
+		RotoHive is a new type of fantasy sports site that runs weekly tournaments
 		
-		Model discovered with Heuristic Miner (the best algorithm in this case):
+		Model discovered with Heuristic Miner:
 
 		\begin{figure}
 			\centering
@@ -135,9 +131,9 @@
 	\frame{
 		\frametitle{Fomo 3D}
 
-		This is a lottery game in which the last person to buy a key at the end of a round wins the jackpot!
+		This is a lottery game in which the last person to buy a key at the end of a round wins the jackpot
 		
-		In this case, Split and Inductive Miner discovered the same model, better than Heuristic Miner one.
+		In this case, Split and Inductive Miner discovered the same model
 
 		\begin{figure}
 			\centering
@@ -149,7 +145,9 @@
 		\frametitle{IDEX}
 
 		IDEX is a cryptocurrency exchange.
-		Exchanges are applications that allows the user to deposit, withdraw or exchange cryptocurrencies.
+		Exchanges are applications that allows the user to deposit, withdraw or exchange cryptocurrencies
+
+		Inductive Miner inferred this model
 
 		\begin{figure}
 			\centering
@@ -160,17 +158,15 @@
 	\frame{
 		\frametitle{Quality measures}
 
-		Quality measures obtained in the case studies with the three used algoritms:
-
 		\begin{tiny}
 
 			\begin{table}[htbp]
 				\begin{tabular}{llllllllll}
 												& \multicolumn{3}{l}{\textbf{Fitness}}                                                    & \multicolumn{3}{l}{\textbf{Precision}}                                                  & \multicolumn{3}{l}{\textbf{Generalization}}                                             \\
 				{\color[HTML]{656565} Algorithm} & {\color[HTML]{656565} Roto} & {\color[HTML]{656565} Fomo} & {\color[HTML]{656565} IDEX} & {\color[HTML]{656565} Roto} & {\color[HTML]{656565} Fomo} & {\color[HTML]{656565} IDEX} & {\color[HTML]{656565} Roto} & {\color[HTML]{656565} Fomo} & {\color[HTML]{656565} IDEX} \\
-				Split                      & 1                           & 0.97357                     & 0.99573                     & 0.20453                     & 0.47947                     & 0.22884                     & 0.99892                     & 0.96836                     & 0.99914                     \\
-				Inductive                  & 0.99995                     & 0.97357                     & 0.99971                     & 0.60294                     & 0.47947                     & 0.48298                     & 0.99496                     & 0.96836                     & 0.99968                     \\
-				Heuristic                  & 0.99940                     & 0.98710                     & 1                           & 0.49889                     & 0.48634                     & 0.32516                     & 0.99889                     & 0.87593                     & 0.99882                    
+				Split                      & \textbf{1}                           & 0.97357                     & 0.99573                     & 0.20453                     & 0.47947                     & 0.22884                     & \textbf{0.99892}                     & \textbf{0.96836}                     & 0.99914                     \\
+				Inductive                  & 0.99995                     & 0.97357                     & 0.99971                     & \textbf{0.60294}                     & 0.47947                     & \textbf{0.48298}                     & 0.99496                     & \textbf{0.96836}                     & \textbf{0.99968}                     \\
+				Heuristic                  & 0.99940                     & \textbf{0.98710}                     & \textbf{1}                           & 0.49889                     & \textbf{0.48634}                     & 0.32516                     & 0.99889                     & 0.87593                     & 0.99882                    
 				\end{tabular}
 			\end{table}
 
@@ -179,7 +175,7 @@
 
 
 	\frame{
-		\frametitle{Design and implementation}
+		\frametitle{Supporting tool}
 		
 		The system designed recreates the methodology used in the case studies analysis.
 
@@ -195,25 +191,25 @@
 
 
 	\frame{
-		\frametitle{Lessons learned}
+		\frametitle{Conclusion and Lessons learned}
 
-		Sound models discovered and pretty good quality parameters measured.
+		Sound models discovered and pretty good quality parameters measured
 
 		\vspace{16px}
 
 		The three algorithms obtained similiar results. How well an algorithm fits a specific application domain depends from 
-		the domain itself regardless the fact that it uses the Blockchain.
+		the domain itself regardless the fact that it uses the Blockchain
 
 		\vspace{16px}
 
-		The analysis infer the logic of the system. Can be used to increase solution quality, or understand how users interact with 
+		The analysis infer the logic of the system and can be used to increase solution quality, or understand how users interact with 
 		a product.
 	}
 
 
 	\frame {
 		\begin{center}
-			Thanks for your attention!
+			{\huge Thanks for your attention!}
 		\end{center}
 	}
     
