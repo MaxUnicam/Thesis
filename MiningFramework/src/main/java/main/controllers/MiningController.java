@@ -16,10 +16,7 @@ import org.processmining.models.graphbased.directed.petrinet.impl.PetrinetImpl;
 import org.processmining.plugins.InductiveMiner.mining.MiningParametersIMf;
 import org.processmining.plugins.InductiveMiner.plugins.IM;
 import org.processmining.plugins.pnml.exporting.PnmlExportNetToPNML;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import utils.prom.FakePluginContext;
 
@@ -28,7 +25,10 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 public class MiningController {
 
-    @RequestMapping(value = "/mine", method = RequestMethod.POST)
+    private String temporary = "/Users/massimiliano/Desktop";
+
+    @CrossOrigin
+    @RequestMapping(value = "/mine", method = RequestMethod.POST, produces = "text/xml")
     public void mine(@RequestParam("file") MultipartFile file, HttpServletResponse response) {
         try {
             File temp = new File("/Users/massimiliano/Desktop/mine.csv");
